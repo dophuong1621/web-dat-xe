@@ -1,0 +1,16 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class StatusDriver extends Model
+{
+    use HasFactory;
+    protected $table = "status_driver";
+
+    public $timestamps = false;
+
+    public $primaryKey = 'status_driver_id';
+}
