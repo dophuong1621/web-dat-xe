@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Booking;
 use Illuminate\Http\Request;
+use App\Models\Booking;
 use Illuminate\Support\Facades\DB;
 
-class CheckBookingController extends Controller
+class CancelBookingController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,23 +15,21 @@ class CheckBookingController extends Controller
      */
     public function index(request $request)
     {
-        $searchCheck = $request->get('search');
-        $indexCheck = Booking::select('*')
+        $searchCancel = $request->get('search');
+        $indexCancel = Booking::select('*')
             ->join('travel_schedule', 'travel_schedule.schedule_id', '=', 'booking.schedule_id')
             ->join('user', 'user.user_id', '=', 'booking.user_id')
             ->join('booking_status', 'booking.booking_status', '=', 'booking_status.booking_status_id')
-            ->where('fullname_user', 'like', "%$searchCheck%")
-            ->where('booking.booking_status', '=', 2)
+            ->where('fullname_user', 'like', "%$searchCancel%")
+            ->where('booking.booking_status', '=', 3)
             ->paginate(3);
-        // ->get();
-        // dd($indexCheck);
         $count_booking = Booking::select(DB::raw('count(booking_id) as tongDon'))
             ->where('booking.booking_status', '=', 1)
             ->get();
         $countTongDon = $count_booking[0]['tongDon'];
-        return view('booking.check_index', [
-            'searchCheck' => $searchCheck,
-            'indexCheck' => $indexCheck,
+        return view('booking.cancel_index', [
+            'searchCancel' => $searchCancel,
+            'indexCancel' => $indexCancel,
             'count_booking' => $countTongDon
         ]);
     }

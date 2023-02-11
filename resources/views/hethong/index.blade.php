@@ -32,7 +32,7 @@
                                                             <tbody>
                                                                 <tr @foreach ($indexUser as $user)>
                                                                                 <td class="text-center">{{ $user->user_id }}</td>
-                                                                                <td class="text-center">{{ $user->full_name_user }}</td>
+                                                                                <td class="text-center">{{ $user->fullname_user }}</td>
                                                                                 <td class="text-center">{{ $user->email_user }}</td>
                                                                                 <td class="text-center">*********</td>
                                                                                 <td class="text-center">{{ $user->dob_user }}</td>

@@ -49,19 +49,19 @@
                                                                                 <td class="text-center">{{ $schedule->schedule_date }}</td>
                                                                                 <td class="text-center">{{ $schedule->departune_time }}</td>
                                                                                 <td class="text-center">{{ $schedule->estivated_arrived_time }}</td>
-                                                                                <td class="text-center">{{ $schedule->fare_amount }}</td>
+                                                                                <td class="text-center">{{  number_format($schedule->fare_amount,0,",",".") }}</td>
                                                                                 <td class="text-center">{{ $schedule->remarks }}</td>
                                                                                 <td>
                                                                     <div class="td-actions text-center">
-                                                                                {{-- <a  rel="tooltip" class="btn btn-info btn-simple" href="{{ route('bus.edit', $schedule->bus_id) }}">
+                                                                                 <!-- <a  rel="tooltip" class="btn btn-info btn-simple" href="{{ route('bus.edit', $schedule->bus_id) }}">
                                                                                                     <i class="material-icons">person</i>
-                                                                                </a> --}}
-                                                                                                <button type="button" rel="tooltip" class="btn btn-success btn-simple">
+                                                                                </a> -->
+                                                                                <a  rel="tooltip" class="btn btn-info btn-simple" href="{{ route('travel-schedule.edit', $schedule->schedule_id) }}" data-original-title="Edit">
                                                                                                     <i class="material-icons">edit</i>
-                                                                                                </button>
-                                                                                                <button type="button" rel="tooltip" class="btn btn-danger btn-simple">
+                                                                                </a>
+                                                                                                <!-- <button type="button" rel="tooltip" class="btn btn-danger btn-simple">
                                                                                                     <i class="material-icons">close</i>
-                                                                                                </button>
+                                                                                                </button> -->
                                                                      </div>
                                                                 </tr @endforeach> 
                                                             </tbody>

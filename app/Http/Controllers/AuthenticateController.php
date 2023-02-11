@@ -24,7 +24,7 @@ class AuthenticateController extends Controller
             $login = Admin::where('email_admin', $email)->where('password_admin', $password)
                 ->firstOrFail();
             $request->session()->put('id', $login->id_admin);
-            $request->session()->put('fullName', $login->full_name_admin);
+            $request->session()->put('fullName', $login->fullname_admin);
             return Redirect::route('statisticals-revenue');
         } catch (Exception $e) {
             return Redirect::route("login")->with('error', [

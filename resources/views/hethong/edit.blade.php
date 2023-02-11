@@ -19,7 +19,7 @@
                                                                 <div class="col-md-4">
                                                                     <div class="form-group label-floating ">
                                                                         <label class="control-label">Fullname</label>
-                                                                        <input type="text" class="form-control" name="fullnameUser" value="{{ $user->full_name_user }}" ></div>
+                                                                        <input type="text" class="form-control" name="fullnameUser" value="{{ $user->fullname_user }}" ></div>
                                                                 </div>
                                                                 <div class="col-md-4">
                                                                     <div class="form-group label-floating ">

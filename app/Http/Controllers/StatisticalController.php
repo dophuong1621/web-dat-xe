@@ -16,7 +16,7 @@ class StatisticalController extends Controller
     {
         $searchPaymentUs = $request->get('search');
 
-        $indexUs = Payment::select('user.user_id', 'user.full_name_user', 'user.email_user', 'user.contact_user', DB::raw('count(payment_id) as tongHoaDon'))
+        $indexUs = Payment::select('user.user_id', 'user.fullname_user', 'user.email_user', 'user.contact_user', 'payment.payment_date', DB::raw('count(payment_id) as tongHoaDon'))
             ->join('booking', 'payment.booking_id', '=', 'booking.booking_id')
             ->join('booking_status', 'booking_status.booking_status_id', '=', 'booking.booking_status')
             ->join('payment_status', 'payment.payment_status', '=', 'payment_status.payment_status_id')
@@ -31,9 +31,9 @@ class StatisticalController extends Controller
             ->join('status_garage', 'garage.status_garage', '=', 'status_garage.status_garage_id')
             ->join('driver', 'driver.driver_id', '=', 'travel_schedule.driver_id')
             ->join('status_driver', 'status_driver.status_driver_id', '=', 'driver.status_driver')
-            ->where('full_name_user', 'like', '%' . $searchPaymentUs . '%')
+            ->where('fullname_user', 'like', '%' . $searchPaymentUs . '%')
             ->where('payment.payment_status', '=', '3')
-            ->groupBy('user.user_id', 'user.full_name_user', 'user.email_user', 'user.contact_user')
+            ->groupBy('user.user_id', 'user.fullname_user', 'user.email_user', 'user.contact_user')
             ->paginate(3);
 
         // dd($indexUs);
@@ -111,7 +111,7 @@ class StatisticalController extends Controller
         $schedule = TravelSchedule::count();
         $user = User::count();
         $searchPaymentUs = $request->get('search');
-        $indexUs = Payment::select('user.user_id', 'user.full_name_user', 'user.email_user', 'user.contact_user',  DB::raw('count(payment_id) as tongHoaDon'), DB::raw('sum(amount_paid) as revenue'))
+        $indexUs = Payment::select('user.user_id', 'user.fullname_user', 'user.email_user', 'user.contact_user',  DB::raw('count(payment_id) as tongHoaDon'), DB::raw('sum(amount_paid) as revenue'), 'payment.payment_date')
             ->join('booking', 'payment.booking_id', '=', 'booking.booking_id')
             ->join('booking_status', 'booking_status.booking_status_id', '=', 'booking.booking_status')
             ->join('payment_status', 'payment.payment_status', '=', 'payment_status.payment_status_id')
@@ -126,13 +126,13 @@ class StatisticalController extends Controller
             ->join('status_garage', 'garage.status_garage', '=', 'status_garage.status_garage_id')
             ->join('driver', 'driver.driver_id', '=', 'travel_schedule.driver_id')
             ->join('status_driver', 'status_driver.status_driver_id', '=', 'driver.status_driver')
-            ->where('full_name_user', 'like', '%' . $searchPaymentUs . '%')
+            ->where('fullname_user', 'like', '%' . $searchPaymentUs . '%')
             ->where('payment.payment_status', '=', '3')
-            ->groupBy('user.user_id', 'user.full_name_user', 'user.email_user', 'user.contact_user')
+            ->groupBy('user.user_id', 'user.fullname_user', 'user.email_user', 'user.contact_user', 'payment.payment_date')
             ->paginate(10);
         // dd($indexUs);
         if (request()->date_form && request()->date_to) {
-            $indexUs = Payment::select('user.user_id', 'user.full_name_user', 'user.email_user', 'user.contact_user', DB::raw('count(payment_id) as tongHoaDon'))
+            $indexUs = Payment::select('user.user_id', 'user.fullname_user', 'user.email_user', 'user.contact_user', DB::raw('count(payment_id) as tongHoaDon'), 'payment.payment_date')
                 ->join('booking', 'payment.booking_id', '=', 'booking.booking_id')
                 ->join('booking_status', 'booking_status.booking_status_id', '=', 'booking.booking_status')
                 ->join('payment_status', 'payment.payment_status', '=', 'payment_status.payment_status_id')
@@ -147,9 +147,9 @@ class StatisticalController extends Controller
                 ->join('status_garage', 'garage.status_garage', '=', 'status_garage.status_garage_id')
                 ->join('driver', 'driver.driver_id', '=', 'travel_schedule.driver_id')
                 ->join('status_driver', 'status_driver.status_driver_id', '=', 'driver.status_driver')
-                ->where('full_name_user', 'like', '%' . $searchPaymentUs . '%')
+                ->where('fullname_user', 'like', '%' . $searchPaymentUs . '%')
                 ->where('payment.payment_status', '=', '3')
-                ->groupBy('user.user_id', 'user.full_name_user', 'user.email_user', 'user.contact_user')
+                ->groupBy('user.user_id', 'user.fullname_user', 'user.email_user', 'user.contact_user', 'payment.payment_date')
                 ->whereBetween('payment_date', [request()->date_form, request()->date_to])
                 ->paginate(3);
         }

@@ -17,7 +17,7 @@
                                                                 <div class="col-md-4">
                                                                     <div class="form-group label-floating ">
                                                                         <label class="control-label">Fullname</label>
-                                                                        <input type="text" class="form-control" name="fullnameadmin" value="{{ $profile->full_name_admin }}" ></div>
+                                                                        <input type="text" class="form-control" name="fullnameadmin" value="{{ $profile->fullname_admin }}" ></div>
                                                                 </div>
                                                                 <div class="col-md-4">
                                                                     <div class="form-group label-floating ">

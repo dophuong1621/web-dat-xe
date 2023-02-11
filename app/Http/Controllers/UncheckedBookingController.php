@@ -22,7 +22,7 @@ class UncheckedBookingController extends Controller
             ->join('travel_schedule', 'travel_schedule.schedule_id', '=', 'booking.schedule_id')
             ->join('user', 'user.user_id', '=', 'booking.user_id')
             ->join('booking_status', 'booking.booking_status', '=', 'booking_status.booking_status_id')
-            ->where('full_name_user', 'like', "%$searchUnchecked%")
+            ->where('fullname_user', 'like', "%$searchUnchecked%")
             ->where('booking.booking_status', '=', 1)
             ->paginate(3);
         $count_booking = Booking::select(DB::raw('count(booking_id) as tongDon'))
@@ -99,15 +99,17 @@ class UncheckedBookingController extends Controller
         $duyet->booking_status = $request->get('TrangThai');
         $duyet->save();
 
-        $idTravelSchedule = $duyet->schedule_id;
-        $soLuongDat = $duyet->number_of_seats;
-
-        $travelSchedule = TravelSchedule::where('schedule_id', '=', $idTravelSchedule)->first();
-        $soLuongHienCo = $travelSchedule->capacity;
-        $ketQua = $soLuongHienCo - $soLuongDat;
-        $travelSchedule->capacity = $ketQua;
-        $travelSchedule->save();
-        return Redirect::route('check-booking.index');
+        if($request->get('TrangThai') == 2){
+            $idTravelSchedule = $duyet->schedule_id;
+            $soLuongDat = $duyet->number_of_seats;
+    
+            $travelSchedule = TravelSchedule::where('schedule_id', '=', $idTravelSchedule)->first();
+            $soLuongHienCo = $travelSchedule->capacity;
+            $ketQua = $soLuongHienCo - $soLuongDat;
+            $travelSchedule->capacity = $ketQua;
+            $travelSchedule->save();
+        }
+        return Redirect::route('unchecked-booking.index');
     }
 
     /**

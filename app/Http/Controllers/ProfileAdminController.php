@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Exception;
+use App\Models\Booking;
+use Illuminate\Support\Facades\DB;
 use App\Models\Admin;
-use Illuminate\Support\Str;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Redirect;
 
@@ -15,17 +13,22 @@ class ProfileAdminController extends Controller
 {
     public function editProfile()
     {
+        $count_booking = Booking::select(DB::raw('count(booking_id) as tongDon'))
+        ->where('booking.booking_status', '=', 1)
+        ->get();
+        $countTongDon = $count_booking[0]['tongDon'];
         $profile = Admin::All()->first();
         // dd($profile);
         return view('admin.profile', [
             'profile' => $profile,
+            'count_booking' => $countTongDon
         ]);
     }
 
     public function updateProfile(Request $request, $id)
     {
         $admin = Admin::find($id);
-        $admin->full_name_admin = $request->fullnameAdmin;
+        $admin->fullname_admin = $request->fullnameAdmin;
         $admin->email_admin = $request->emailAdmin;
         $admin->password_admin = $request->passwordAdmin;
         $admin->dob_admin = $request->dobAdmin;
@@ -71,7 +74,7 @@ class ProfileAdminController extends Controller
 
         Mail::send('admin.check_email_forgot', compact('admin'), function ($email) use ($admin) {
             $email->subject('Đổi mật khẩu - Lấy lại mật khẩu tài khoản');
-            $email->to($admin->email_admin, $admin->full_name_admin);
+            $email->to($admin->email_admin, $admin->fullname_admin);
         });
         // return redirect()->back()->with('yes', 'Vui lòng check email để thực hiện thay đổi mật khẩu');
         return Redirect::route('login')->with('yes', 'Bạn vui lòng check mail để thực hiện thay đổi mật khẩu');

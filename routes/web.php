@@ -10,13 +10,13 @@ use App\Http\Controllers\DriverController;
 use App\Http\Controllers\GarageController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\PaymentController;
-use App\Http\Controllers\WomenDayController;
 use App\Http\Controllers\StatisticalController;
 use App\Http\Controllers\AuthenticateController;
 use App\Http\Controllers\CheckBookingController;
 use App\Http\Controllers\ProfileAdminController;
 use App\Http\Controllers\TravelScheduleController;
 use App\Http\Controllers\UncheckedBookingController;
+use App\Http\Controllers\CancelBookingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -51,6 +51,7 @@ Route::middleware([CheckLogin::class])->group(function () {
     Route::resource('travel-schedule', TravelScheduleController::class);
     Route::resource('check-booking', CheckBookingController::class);
     Route::resource('unchecked-booking', UncheckedBookingController::class);
+    Route::resource('cancel-booking', CancelBookingController::class);
     Route::resource('garage', GarageController::class);
     Route::resource('payment', PaymentController::class);
     Route::GET('statisticals-user', [StatisticalController::class, 'user'])->name('statisticals-user');

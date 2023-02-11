@@ -19,27 +19,25 @@
                                                                     <th class="text-center">Fare Amount</th>
                                                                     <th class="text-center">Total Amount</th>
                                                                     <th class="text-center">Date of Booking</th>
-                                                                    {{-- <th class="text-center">Booking Image</th> --}}
-                                                                    <th class="text-center">Status</th>
-                                                                    <th class="text-center">Actions</th>
+                                                                    <!-- <th class="text-center">Status</th> -->
+                                                                    <!-- <th class="text-center">Actions</th> -->
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
                                                                 <tr @foreach ($indexCheck as $check)> 
                                                                                 <td class="text-center">{{ $check->booking_id}}</td>
-                                                                                <td class="text-center">{{ $check->full_name_user }}</td>
+                                                                                <td class="text-center">{{ $check->fullname_user }}</td>
                                                                                 <td class="text-center">{{ $check->number_of_seats }}</td>
-                                                                                <td class="text-center">{{ $check->fare }}</td>
-                                                                                <td class="text-center">{{ $check->total_amount }}</td>
+                                                                                <td class="text-center">{{ number_format($check->fare_amount,0,",",".") }}</td>
+                                                                                <td class="text-center">{{ number_format($check->total_amount,0,",",".") }}</td>
                                                                                 <td class="text-center">{{ $check->date_of_booking }}</td>
-                                                                                {{-- <td class="text-center">{{ $check->booking_image }}</td> --}}
-                                                                                <td class="text-center">{{ $check->name_booking_status }}</td>
+                                                                                <!-- <td class="text-center">{{ $check->name_booking_status }}</td> -->
                                                                                 
                                                                                 <td>
                                                                     <div class="td-actions text-center">
-                                                                                <a  rel="tooltip" class="btn btn-info btn-simple" href="">
+                                                                                <!-- <a  rel="tooltip" class="btn btn-info btn-simple" href="">
                                                                                                     <i class="material-icons">visibility</i>
-                                                                                </a>
+                                                                                </a> -->
                                                                                                 {{-- <button type="button" rel="tooltip" class="btn btn-success btn-simple">
                                                                                                     <i class="material-icons">check</i>
                                                                                                 </button>

@@ -6,7 +6,6 @@ use App\Models\User;
 use App\Models\Booking;
 use App\Models\status_user;
 use Illuminate\Http\Request;
-use App\Models\acount_status;
 use App\Models\AcountCategory;
 use App\Models\acount_category;
 use Illuminate\Support\Facades\DB;
@@ -22,11 +21,11 @@ class UserController extends Controller
     public function index(Request $request)
     {
         $searchUser = $request->get('search');
-        // $indexUser = User::where('full_name_user', 'like', '%' . $searchUser . '%')->paginate(3);
+        // $indexUser = User::where('fullname_user', 'like', '%' . $searchUser . '%')->paginate(3);
         $indexUser = User::select('*')
             ->join('acount_category', 'user.acount_category', '=', 'acount_category.acount_category_id')
             ->join('status_user', 'user.acount_status', '=', 'status_user.status_id')
-            ->where('full_name_user', 'like', '%' . $searchUser . '%')
+            ->where('fullname_user', 'like', '%' . $searchUser . '%')
             ->paginate(3);
 
         $count_booking = Booking::select(DB::raw('count(booking_id) as tongDon'))
@@ -68,9 +67,9 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $name = $request->get('name');
+        // $name = $request->get('name');
         $user = new User();
-        $user->full_name_user = $request->fullname;
+        $user->fullname_user = $request->fullname;
         $user->email_user = $request->email;
         $user->password_user = $request->pass;
         $user->dob_user = $request->dob;
@@ -131,7 +130,7 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         $user = User::find($id);
-        $user->full_name_user = $request->fullnameUser;
+        $user->fullname_user = $request->fullnameUser;
         $user->email_user = $request->emailUser;
         $user->password_user = $request->passwordUser;
         $user->dob_user = $request->dobUser;

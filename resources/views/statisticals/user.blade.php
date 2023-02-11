@@ -38,7 +38,7 @@
                                                 <tbody>
                                                     <tr @foreach($indexUs as $user)>
                                                         <td class="text-center">{{ $user->user_id }}</td>
-                                                        <td class="text-center">{{ $user->full_name_user }}</td>
+                                                        <td class="text-center">{{ $user->fullname_user }}</td>
                                                         <td class="text-center">{{ $user->email_user }}</td>
                                                         <td class="text-center">{{ $user->contact_user }}</td>
                                                         <td class="text-center">{{ $user->tongHoaDon }}</td>

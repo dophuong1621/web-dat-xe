@@ -3,9 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\Booking;
+use App\Models\StatusPayment;
 use App\Models\Payment;
+use App\Models\TravelSchedule;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redirect;
+
 
 class PaymentController extends Controller
 {
@@ -23,7 +27,7 @@ class PaymentController extends Controller
             ->join('payment_status', 'payment_status.payment_status_id', '=', 'payment.payment_status')
             ->join('garage', 'garage.garage_id', '=', 'bus.bus_garage')
             ->join('user', 'user.user_id', '=', 'booking.user_id')
-            ->where('full_name_user', 'like', '%' . $searchPayment . '%')
+            ->where('fullname_user', 'like', '%' . $searchPayment . '%')
             ->paginate(3);
         // dd($indexPayment);
         if (request()->date_form && request()->date_to) {
@@ -33,7 +37,7 @@ class PaymentController extends Controller
                 ->join('payment_status', 'payment_status.payment_status_id', '=', 'payment.payment_status')
                 ->join('garage', 'garage.garage_id', '=', 'bus.bus_garage')
                 ->join('user', 'user.user_id', '=', 'booking.user_id')
-                ->where('full_name_user', 'like', '%' . $searchPayment . '%')
+                ->where('fullname_user', 'like', '%' . $searchPayment . '%')
                 ->whereBetween('payment_date', [request()->date_form, request()->date_to])
                 ->paginate(3);
         }
@@ -56,7 +60,20 @@ class PaymentController extends Controller
      */
     public function create()
     {
-        //
+        $statusPayment = StatusPayment::All();
+        $booking = TravelSchedule::join('booking', 'booking.schedule_id','=','travel_schedule.schedule_id')
+        ->join('user', 'user.user_id','=','booking.user_id')
+        ->get();
+        $statusPayment = StatusPayment::All();
+        $count_booking = Booking::select(DB::raw('count(booking_id) as tongDon'))
+            ->where('booking.booking_status', '=', 1)
+            ->get();
+        $countTongDon = $count_booking[0]['tongDon'];
+        return view('payment.create', compact('statusPayment'), [
+            'count_booking' => $countTongDon,
+            'booking' => $booking,
+            'statusPayment' => $statusPayment
+        ]);
     }
 
     /**
@@ -67,7 +84,13 @@ class PaymentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $payment = new Payment();
+        $payment->booking_id = $request->booking;
+        $payment->amount_paid = $request->amountPaid;
+        $payment->payment_date = date('Y/m/d');
+        $payment->payment_status = $request->paymentStatus;
+        $payment->save();
+        return Redirect::route('payment.index');
     }
 
     /**
@@ -85,11 +108,11 @@ class PaymentController extends Controller
             ->join('payment_status', 'payment_status.payment_status_id', '=', 'payment.payment_status')
             ->join('garage', 'garage.garage_id', '=', 'bus.bus_garage')
             ->join('user', 'user.user_id', '=', 'booking.user_id')
+            ->where('payment.payment_id', '=', $id)
             ->get();
         // dd($showPayment);
         return view('payment.show ', [
             'showPayment' => $showPayment,
-
         ]);
     }
 

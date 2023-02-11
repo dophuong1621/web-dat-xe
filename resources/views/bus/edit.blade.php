@@ -54,9 +54,9 @@
                                                                                 <div class="form-group label-floating">
                                                                                                     <label class="control-label">Status</label>
                                                                                                     <select class="form-control" name="busStatus">
-                                                                                                            <option value="{{ $bus->bus_status_id}}" selected>{{ $bus->bus_status_name}}</option>
+                                                                                                            <option value="{{ $bus->bus_status_id}}" selected>{{ $bus->name_bus_status}}</option>
                                                                                                                     @foreach ($status_bus as $bs)
-                                                                                                                        <option value="{{ $bs->bus_status_id }}"> {{ $bs->bus_status_name }} </option>
+                                                                                                                        <option value="{{ $bs->bus_status_id }}"> {{ $bs->name_bus_status }} </option>
                                                                                                                             @endforeach    
                                                                                                                         </select>
                                                                                                                     </div>

@@ -29,7 +29,10 @@
                                 <p class="category">Revenue</p>
                                 <h3 class="card-title">
                                     @foreach($count_revenue as $cr)
-                                    {{ $cr->tongTien}}</h3>
+                                    <?php if(isset($cr->tongTien)){
+                                       echo number_format($cr->tongTien,0,",",".");
+                                    }else{echo '0';}?>
+                                    </h3>
                                     @endforeach
                             </div>
                             <div class="card-footer">
@@ -104,17 +107,19 @@
                                                                                 <th class="text-center">Contact</th>
                                                                                 <th class="text-center">Invoice Quantity</th>
                                                                                 <th class="text-center">Revenue</th>
+                                                                                <th class="text-center">Date</th>
                                                                                 <th class="text-center">Actions</th>
                                                                             </tr>
                                                                         </thead>
                                                                         <tbody>             
                                                                             <tr @foreach($indexUs as $user)>
                                                                                 <td class="text-center">{{ $user->user_id }}</td>
-                                                                                <td class="text-center">{{ $user->full_name_user }}</td>
+                                                                                <td class="text-center">{{ $user->fullname_user }}</td>
                                                                                 <td class="text-center">{{ $user->email_user }}</td>
                                                                                 <td class="text-center">{{ $user->contact_user }}</td>
                                                                                 <td class="text-center">{{ $user->tongHoaDon }}</td>
-                                                                                <td class="text-center">{{ $user->revenue }}</td>
+                                                                                <td class="text-center">{{ number_format($user->revenue,0,",",".") }}</td>
+                                                                                <td class="text-center">{{ $user->payment_date }}</td>
                                                                                 <td class="text-center"  >
                                                                                     <div class="td-actions text-center">
                                                                                     <a href="#" class="btn btn-info btn-simple"><i class="material-icons">visibility</i></a>
@@ -133,4 +138,4 @@
                 </div>
     </div>
 </div>
-@endsection
+@endsection 

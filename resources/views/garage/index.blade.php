@@ -45,19 +45,19 @@
                                                                                 <td class="text-center">{{ $garage->email_garage }}</td>
                                                                                 <td class="text-center">{{ $garage->contact_garage }}</td>
                                                                                 <td class="text-center">{{ $garage->address_garage}}
-                                                                                <td class="text-center">{{ $garage->name_status }}</td>
+                                                                                <td class="text-center">{{ $garage->name_status_garage }}</td>
                                                                                 <td class="text-center"><img src="{{ $garage->garage_image }}" style="width:50px; height: 50px"></td>
                                                                                 <td>
                                                                     <div class="td-actions text-center">
                                                                                 <a  rel="tooltip" class="btn btn-info btn-simple" href="{{ route('garage.show', $garage->garage_id) }}">
                                                                                                     <i class="material-icons">visibility</i>
                                                                                 </a>
-                                                                                                <button type="button" rel="tooltip" class="btn btn-success btn-simple">
+                                                                                <a  rel="tooltip" class="btn btn-info btn-simple" href="{{ route('garage.edit', $garage->garage_id) }}" data-original-title="Edit">
                                                                                                     <i class="material-icons">edit</i>
-                                                                                                </button>
-                                                                                                <button type="button" rel="tooltip" class="btn btn-danger btn-simple">
+                                                                                </a>
+                                                                                                <!-- <button type="button" rel="tooltip" class="btn btn-danger btn-simple">
                                                                                                     <i class="material-icons">close</i>
-                                                                                                </button>
+                                                                                                </button> -->
                                                             </div>
                                                                 </tr @endforeach> 
                                                             </tbody>

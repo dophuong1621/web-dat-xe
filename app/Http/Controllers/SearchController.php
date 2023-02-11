@@ -18,7 +18,10 @@ class SearchController extends Controller
             ->join('garage', 'garage.garage_id', '=', 'bus.bus_garage')
             ->join('user', 'user.user_id', '=', 'booking.user_id')
             ->join('driver', 'driver.driver_id', '=', 'travel_schedule.driver_id')
-            ->where('user.full_name_user', 'like', '%' . $search . '%')
+            ->where('user.fullname_user', 'like', '%' . $search . '%')
+            ->where('driver.fullname_driver', 'like', '%' . $search . '%')
+            ->where('bus.bus_plate_number', 'like', '%' . $search . '%')
+            ->where('garage.name_garage', 'like', '%' . $search . '%')
             ->get();
         // dd($search);
         return view('layouts.navbar ', [

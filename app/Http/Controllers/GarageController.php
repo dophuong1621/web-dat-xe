@@ -7,7 +7,7 @@ use App\Models\Booking;
 use App\Models\StatusGarage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Redirect;    
 
 class GarageController extends Controller
 {
@@ -66,7 +66,6 @@ class GarageController extends Controller
         $LuuAnh = 'assets/image/garage';
         $image->move($LuuAnh, $nameImage);
 
-
         $name  = $request->get('name');
         $garage = new Garage;
         $garage->name_garage = $request->nameGarage;
@@ -87,13 +86,16 @@ class GarageController extends Controller
      */
     public function show($id)
     {
-        $garage = Garage::find($id)
-            ->join('status_garage', 'garage.status_garage', '=', 'status_garage.status_garage_id')
-            ->join('bus', 'garage.garage_id', '=', 'bus.bus_garage')
-            ->join('bus_type', 'bus_type.bus_type_id', '=', 'bus.bus_type')
-            ->join('bus_status', 'bus_status.bus_status_id', '=', 'bus.bus_status')
-            ->join('driver', 'garage.garage_id', '=', 'driver.driver_garage')
-            ->join('status_driver', 'driver.status_driver', '=', 'status_driver.status_driver_id')
+        $garage = Garage::select('*')
+            ->join('bus', 'bus.bus_garage', '=', 'garage.garage_id')
+            ->leftJoin('bus_type', 'bus_type.bus_type_id', '=', 'bus.bus_type')
+            ->leftJoin('bus_status', 'bus_status.bus_status_id', '=', 'bus.bus_status')
+            ->leftJoin('driver', 'garage.garage_id', '=', 'driver.driver_garage')
+            ->leftJoin('status_driver', 'driver.status_driver', '=', 'status_driver.status_driver_id')
+            ->leftJoin('status_garage', 'garage.status_garage', '=', 'status_garage.status_garage_id')
+            ->where('garage.garage_id',$id)
+            ->where('bus.bus_garage', $id)
+            ->where('driver.driver_garage',$id)
             ->first();
         $garageStatus = StatusGarage::All();
         $count_booking = Booking::select(DB::raw('count(booking_id) as tongDon'))
@@ -116,7 +118,20 @@ class GarageController extends Controller
      */
     public function edit($id)
     {
-        //
+        $garageStatus = StatusGarage::all();
+        $garage =  Garage::join('status_garage', 'garage.status_garage', '=', 'status_garage.status_garage_id')
+        ->where('garage.garage_id', '=', $id)
+        ->first();
+    // dd($garage);
+    $count_booking = Booking::select(DB::raw('count(booking_id) as tongDon'))
+        ->where('booking.booking_status', '=', 1)
+        ->get();
+    $countTongDon = $count_booking[0]['tongDon'];
+    return view('garage.edit', [
+        'garage' => $garage,
+        'garageStatus' => $garageStatus,
+        'count_booking' => $countTongDon
+    ]);
     }
 
     /**
@@ -128,7 +143,14 @@ class GarageController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $garage = Garage::find($id);
+        $garage->name_garage = $request->nameGarage;
+        $garage->email_garage = $request->emailGarage;
+        $garage->contact_garage = $request->contactGarage;
+        $garage->address_garage = $request->addressGarage;
+        $garage->status_garage = $request->garageStatus;
+        $garage->save();
+        return Redirect::route('garage.index');
     }
 
     /**

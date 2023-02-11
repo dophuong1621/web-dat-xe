@@ -45,7 +45,7 @@
                                                                                 <td class="text-center">{{ $bus->bus_plate_number }}</td>
                                                                                 <td class="text-center">{{ $bus->name_bus_type }}</td>
                                                                                 <td class="text-center">{{ $bus->capacity }}</td>
-                                                                                <td class="text-center">{{ $bus->bus_status_name }}</td>
+                                                                                <td class="text-center">{{ $bus->name_bus_status }}</td>
                                                                                 <td class="text-center"><img src="{{ $bus->bus_image }}" style="width:50px; height: 50px"></td>
                                                                                 <td>
                                                                     <div class="td-actions text-center">

@@ -9,7 +9,6 @@
                                 </div>  
                                 <div class="card-content">
                                         <h4 class="card-title">Show Garage </h4>
-                                                       
                                                             <h3 class="card-title" text-center>Garage </h3>
                                                             <div class="row">
                                                                 <div class="col-md-4">
@@ -41,13 +40,13 @@
                                                             <div class="col-md-4">           
                                                                                 <div class="form-group label-floating">
                                                                                                     <label class="control-label"> Status</label>
-                                                                                                    <input type="text" class="form-control" name="garageStatus" value="{{ $garage->name_status}}" disabled >
+                                                                                                    <input type="text" class="form-control" name="garageStatus" value="{{ $garage->name_status_garage }}" disabled >
                                                                                                 </div>
                                                             </div>
                                                             <div class="col-md-4">
                                                                                 <div class="form-group label-floating">
                                                                                     <label class="control-label">Image</label>
-                                                                                    <img src="{{ $garage->garage_image }}" width="100px" name="garage_image" class="form-control" disabled>
+                                                                                    <img src="/{{ $garage->garage_image }}"  name="garage_image" class="form-control" disabled>
                                                                                 </div>
                                                             </div> 
                                                             </div> 
@@ -104,7 +103,7 @@
                                                                                 <div class="col-md-4">
                                                                                     <div class="form-group label-floating">
                                                                                         <label class="control-label">Image</label>
-                                                                                        <img src="{{ $garage->driver_image }}" width="100px" name="passwordUser" class="form-control" disabled>
+                                                                                        <img src="/{{ $garage->driver_image }}" width="100px" name="passwordUser" class="form-control" disabled>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
@@ -133,13 +132,14 @@
                                                                 <div class="col-md-4">
                                                                     <div class="form-group label-floating">
                                                                         <label class="control-label">Status</label>
-                                                                        <input type="text" class="form-control" name="busStatus" value="{{ $garage->bus_status_name }}" disabled>
+                                                                        <input type="text" class="form-control" name="busStatus" value="{{ $garage->name_bus_status }}" disabled>
                                                                     </div>
                                                                 </div>    
                                                                 <div class="col-md-4">
                                                                     <div class="form-group label-floating">
                                                                         <label class="control-label">Image</label>
-                                                                        <input type="text" class="form-control" name="busImage" value="{{ $garage->bus_image }}"  disabled>
+                                                                        <img src="/{{ $garage->bus_image }}"  name="busImage" class="form-control" disabled>
+
                                                                     </div>
                                                                 </div>
                                                                 

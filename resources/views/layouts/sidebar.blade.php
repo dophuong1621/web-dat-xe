@@ -81,10 +81,9 @@
                             <li>
                                 <a data-toggle="collapse" href="#bookingExamples">
                                     <i class="material-icons">apps</i>
-                                    
                                     <p> Booking 
                                         <span style="color: #f44336">
-                                           {{ $count_booking}}
+                                           {{ $count_booking }}
                                         </span>
                                         <b class="caret"></b>
                                     </p>
@@ -113,7 +112,12 @@
                                                 </span> --}}
                                             </a>
                                         </li>
-                                        
+                                        <li>
+                                            <a href="{{ route('cancel-booking.index') }}">
+                                                <span class="sidebar-mini"> CC </span>
+                                                <span class="sidebar-normal"> Cancel </span>
+                                            </a>
+                                        </li>
                                     </ul>
                                 </div>
                             </li>   

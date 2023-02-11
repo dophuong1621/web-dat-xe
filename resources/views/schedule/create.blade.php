@@ -19,7 +19,7 @@
                                                             <div class="col-sm-7">
                                                                 <div class="form-group label-floating">
                                                                     <label class="control-label"></label>
-                                                                    <select class="form-control" name="garage">
+                                                                    <select class="form-control" name="bus">
                                                                         <option>Select</option>
                                                                         @foreach ($bus as $b)
                                                                           <option value="{{ $b->bus_id }}"> {{ $b->bus_plate_number }} </option>
@@ -97,12 +97,21 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="row">
+                                                <!-- <div class="row">
                                                             <label class="col-sm-2 label-on-left">Schedule Map</label>
                                                             <div class="col-sm-7">
                                                                 <div class="form-group label-floating">
                                                                     <label class="control-label"></label>
                                                                     <input class="form-control" type="file" name="scheduleMap" required="true" />
+                                                                </div>
+                                                            </div>
+                                                        </div> -->
+                                                        <div class="row">
+                                                            <label class="col-sm-2 label-on-left">Capacity</label>
+                                                            <div class="col-sm-7">
+                                                                <div class="form-group label-floating">
+                                                                    <label class="control-label"></label>
+                                                                    <input class="form-control" type="number" name="capacity" required="true" />
                                                                 </div>
                                                             </div>
                                                         </div>
