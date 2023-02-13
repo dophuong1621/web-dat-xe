@@ -112,14 +112,14 @@
                                                                             </tr>
                                                                         </thead>
                                                                         <tbody>             
-                                                                            <tr @foreach($indexUs as $user)>
-                                                                                <td class="text-center">{{ $user->user_id }}</td>
-                                                                                <td class="text-center">{{ $user->fullname_user }}</td>
-                                                                                <td class="text-center">{{ $user->email_user }}</td>
-                                                                                <td class="text-center">{{ $user->contact_user }}</td>
-                                                                                <td class="text-center">{{ $user->tongHoaDon }}</td>
-                                                                                <td class="text-center">{{ number_format($user->revenue,0,",",".") }}</td>
-                                                                                <td class="text-center">{{ $user->payment_date }}</td>
+                                                                            <tr @foreach($indexUs as $payment)>
+                                                                                <td class="text-center">{{ $payment->id }}</td>
+                                                                                <td class="text-center">{{ $payment->fullname_user }}</td>
+                                                                                <td class="text-center">{{ $payment->email_user }}</td>
+                                                                                <td class="text-center">{{ $payment->contact_user }}</td>
+                                                                                <td class="text-center">{{ $payment->tongHoaDon }}</td>
+                                                                                <td class="text-center">{{ number_format($payment->revenue,0,",",".") }}</td>
+                                                                                <td class="text-center">{{ $payment->payment_date }}</td>
                                                                                 <td class="text-center"  >
                                                                                     <div class="td-actions text-center">
                                                                                     <a href="#" class="btn btn-info btn-simple"><i class="material-icons">visibility</i></a>

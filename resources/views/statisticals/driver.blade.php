@@ -37,7 +37,7 @@
                                                 </tfoot> --}}
                                                 <tbody>
                                                     <tr @foreach($indexDr as $driver)>
-                                                        <td class="text-center">{{ $driver->driver_id }}</td>
+                                                        <td class="text-center">{{ $driver->id }}</td>
                                                         <td class="text-center">{{ $driver->fullname_driver }}</td>
                                                         <td class="text-center">{{ $driver->email_driver }}</td>
                                                         <td class="text-center">{{ $driver->contact_driver }}</td>

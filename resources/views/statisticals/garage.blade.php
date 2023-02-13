@@ -28,7 +28,7 @@
                                                 
                                                 <tbody>
                                                     <tr @foreach($indexGr as $garage)>
-                                                        <td class="text-center">{{ $garage->garage_id }}</td>
+                                                        <td class="text-center">{{ $garage->id }}</td>
                                                         <td class="text-center">{{ $garage->name_garage }}</td>
                                                         <td class="text-center">{{ $garage->email_garage }}</td>
                                                         <td class="text-center">{{ $garage->contact_garage }}</td>
