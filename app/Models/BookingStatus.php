@@ -5,12 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class StatusGarage extends Model
+class BookingStatus extends Model
 {
     use HasFactory;
-    protected $table = "status_garage";
+    protected $table = "booking_status";
 
     public $timestamps = false;
 
-    public $primaryKey = 'id';
+    public $primaryKey = "id";
 }

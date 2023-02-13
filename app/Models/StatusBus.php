@@ -12,5 +12,5 @@ class StatusBus extends Model
 
     public $timestamps = false;
 
-    public $primaryKey = 'bus_status_id';
+    public $primaryKey = 'id';
 }

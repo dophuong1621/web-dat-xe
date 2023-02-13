@@ -12,5 +12,13 @@ class Booking extends Model
 
     public $timestamps = false;
 
-    public $primaryKey = "booking_id";
+    public $primaryKey = "id";
+
+    public function schedule(){
+        return $this->hasMany(TravelSchedule::class,'id','schedule_id');
+    }
+
+    public function user(){
+        return $this->hasMany(User::class,'id','user_id');
+    }
 }

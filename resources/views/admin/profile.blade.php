@@ -10,7 +10,7 @@
                                 <div class="card-content">
                                         <h4 class="card-title">Edit Profile - Admin 
                                                         </h4>
-                                                        <form method="POST" action="{{ route('profile-update', $profile->admin_id) }}">
+                                                        <form method="POST" action="{{ route('profile-update', $profile->id) }}">
                                                             @method("PUT")
                                                             @csrf
                                                             <div class="row">

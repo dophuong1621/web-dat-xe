@@ -21,13 +21,15 @@ class DriverController extends Controller
     public function index(request $request)
     {
         $searchDriver = $request->get('search');
-        $indexDriver = Driver::join('status_driver', 'driver.status_driver', '=', 'status_driver.status_driver_id')
-            ->join('garage', 'garage.garage_id', '=', 'driver.driver_garage')
-            ->join('gender', 'gender.gender_id', '=', 'driver.gender_driver')
+        $indexDriver = Driver::select('driver.*','status_driver.name_status_driver','garage.name_garage','gender.gender_name')
+            ->join('status_driver', 'driver.status_driver', '=', 'status_driver.id')
+            ->join('garage', 'garage.id', '=', 'driver.driver_garage')
+            ->join('gender', 'gender.id', '=', 'driver.gender_driver')
             ->where('fullname_driver', 'like', '%' . $searchDriver . '%')
+            ->orderBy('driver.id', 'ASC')
             ->paginate(3);
         // dd($indexDriver);
-        $count_booking = Booking::select(DB::raw('count(booking_id) as tongDon'))
+        $count_booking = Booking::select(DB::raw('count(id) as tongDon'))
             ->where('booking.booking_status', '=', 1)
             ->get();
         $countTongDon = $count_booking[0]['tongDon'];
@@ -48,7 +50,7 @@ class DriverController extends Controller
         $garage = Garage::all();
         $statusDriver = StatusDriver::all();
         $gender = Gender::all();
-        $count_booking = Booking::select(DB::raw('count(booking_id) as tongDon'))
+        $count_booking = Booking::select(DB::raw('count(id) as tongDon'))
             ->where('booking.booking_status', '=', 1)
             ->get();
         $countTongDon = $count_booking[0]['tongDon'];
@@ -108,13 +110,11 @@ class DriverController extends Controller
         $driverGarage = Garage::all();
         $driverStatus = StatusDriver::all();
         $driverGender = Gender::all();
-        $driver =  Driver::join('garage', 'driver.driver_garage', '=', 'garage.garage_id')
-            ->join('gender', 'gender.gender_id', '=', 'driver.gender_driver')
-            ->join('status_driver', 'driver.status_driver', '=', 'status_driver.status_driver_id')
-            ->where('driver.driver_id', '=', $id)
+        $driver =  Driver::with('driverGarage','driverStatus','driverGender')
+            ->where('id', '=', $id)
             ->first();
-        // dd($driver);
-        $count_booking = Booking::select(DB::raw('count(booking_id) as tongDon'))
+//         dd($driver);
+        $count_booking = Booking::select(DB::raw('count(id) as tongDon'))
             ->where('booking.booking_status', '=', 1)
             ->get();
         $countTongDon = $count_booking[0]['tongDon'];

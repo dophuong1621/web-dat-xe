@@ -8,14 +8,15 @@ use App\Models\Admin;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Hash;
 
 class ProfileAdminController extends Controller
 {
     public function editProfile()
     {
-        $count_booking = Booking::select(DB::raw('count(booking_id) as tongDon'))
-        ->where('booking.booking_status', '=', 1)
-        ->get();
+        $count_booking = Booking::select(DB::raw('count(id) as tongDon'))
+            ->where('booking.booking_status', '=', 1)
+            ->get();
         $countTongDon = $count_booking[0]['tongDon'];
         $profile = Admin::All()->first();
         // dd($profile);
@@ -39,17 +40,38 @@ class ProfileAdminController extends Controller
     }
     public function editPass()
     {
-        $pass = Admin::All()->first();
-        // dd($pass);
+        $count_booking = Booking::select(DB::raw('count(id) as tongDon'))
+            ->where('booking.booking_status', '=', 1)
+            ->get();
+        $countTongDon = $count_booking[0]['tongDon'];
         return view('admin.change_password', [
-            'pass' => $pass,
+            'count_booking' => $countTongDon
         ]);
     }
 
     public function updatePass(Request $request)
     {
+        $value = $request->session()->get('id');
+        $admin = Admin::find($value);
 
-        // if (!(Hash::check($request->get('current_password'), Admin::where('password_admin')))) {
+        if ($request->current_password == $admin->password_admin) {
+            $update = Admin::find($value);
+            $update->password_admin = $request->password_confirm;
+            $update->save();
+            return back()->with("status", "Password changed successfully!");
+        } else {
+            return back()->with('error', 'Sai mật khẩu cũ ');
+        }
+
+        // dd($request->current_password);
+        // dd($admin->password_admin);
+
+        // if ($admin && Hash::check($request->current_password, $admin->password_admin)) {
+        //     $update = Admin::find($value);
+        //     $update->password_admin = $request->password_confirm;D
+        //     $update->save();
+        //     return back()->with("status", "Password changed successfully!");
+        // }else{
         //     return back()->with('error', 'Sai mật khẩu cũ ');
         // }
     }

@@ -3,7 +3,7 @@
 <div class="content">
                     <div class="col-md-12">
                                         <div class="card">
-                                            <form id="TypeValidation" class="form-horizontal" action="{{ route('payment.show', $showPayment->payment_id)}}" method="POST">
+                                            <form id="TypeValidation" class="form-horizontal" action="{{ route('payment.show', $showPayment->id)}}" method="POST">
                                                             @method("PUT")
                                                             @csrf
                                                 <div class="card-header card-header-text" data-background-color="rose">
@@ -17,7 +17,7 @@
                                                             <div class="form-group label-floating">
                                                                 <label class="control-label"></label>
                                                                 {{-- <input class="form-control" type="text" name="required" required="true" /> --}}
-                                                                <input input readonly name="paymentID" class="form-control" value="{{ $showPayment->payment_id }}">
+                                                                <input input readonly name="paymentID" class="form-control" value="{{ $showPayment->id }}">
                                                             </div>
                                                         </div>
                                                         

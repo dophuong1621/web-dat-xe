@@ -69,7 +69,7 @@ Route::middleware([CheckLogin::class])->group(function () {
 
     //change-password
     Route::GET('edit-password', [ProfileAdminController::class, 'editPass'])->name('editPass');
-    Route::POST('edit-password', [ProfileAdminController::class, 'postEditPass']);
+    Route::POST('edit-password', [ProfileAdminController::class, 'updatePass'])->name('updatePass');
 });
 //forgot pass
 Route::GET('forgot-password', [ProfileAdminController::class, 'forgotPass'])->name('forgotPass');

@@ -41,9 +41,9 @@
                                                             </thead>
                                                             <tbody>
                                                                 <tr @foreach ($indexSchedule as $schedule)> 
-                                                                                <td class="text-center">{{ $schedule->schedule_id }}</td>
-                                                                                {{-- <td class="text-center">{{ $schedule->bus_id }}</td>
-                                                                                <td class="text-center">{{ $schedule->driver_id }}</td> --}}
+                                                                                <td class="text-center">{{ $schedule->id }}</td>
+                                                                                {{-- <td class="text-center">{{ $schedule->id }}</td>
+                                                                                <td class="text-center">{{ $schedule->id }}</td> --}}
                                                                                 <td class="text-center">{{ $schedule->starting_point }}</td>
                                                                                 <td class="text-center">{{ $schedule->destination }}</td>
                                                                                 <td class="text-center">{{ $schedule->schedule_date }}</td>
@@ -53,10 +53,13 @@
                                                                                 <td class="text-center">{{ $schedule->remarks }}</td>
                                                                                 <td>
                                                                     <div class="td-actions text-center">
-                                                                                 <!-- <a  rel="tooltip" class="btn btn-info btn-simple" href="{{ route('bus.edit', $schedule->bus_id) }}">
+                                                                                 <!-- <a  rel="tooltip" class="btn btn-info btn-simple" href="{{ route('bus.edit', $schedule->id) }}">
                                                                                                     <i class="material-icons">person</i>
                                                                                 </a> -->
-                                                                                <a  rel="tooltip" class="btn btn-info btn-simple" href="{{ route('travel-schedule.edit', $schedule->schedule_id) }}" data-original-title="Edit">
+                                                                                <a  rel="tooltip" class="btn btn-info btn-simple" href="{{ route('travel-schedule.show', $schedule->id) }}">
+                                                                                                    <i class="material-icons">visibility</i>
+                                                                                </a>
+                                                                                <a  rel="tooltip" class="btn btn-info btn-simple" href="{{ route('travel-schedule.edit', $schedule->id) }}" data-original-title="Edit">
                                                                                                     <i class="material-icons">edit</i>
                                                                                 </a>
                                                                                                 <!-- <button type="button" rel="tooltip" class="btn btn-danger btn-simple">

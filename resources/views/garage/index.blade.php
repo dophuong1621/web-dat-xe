@@ -40,7 +40,7 @@
                                                             </thead>
                                                             <tbody>
                                                                 <tr @foreach ($indexGarage as $garage)>   
-                                                                                <td class="text-center">{{ $garage->garage_id }}</td>
+                                                                                <td class="text-center">{{ $garage->id }}</td>
                                                                                 <td class="text-center">{{ $garage->name_garage }}</td>
                                                                                 <td class="text-center">{{ $garage->email_garage }}</td>
                                                                                 <td class="text-center">{{ $garage->contact_garage }}</td>
@@ -49,10 +49,10 @@
                                                                                 <td class="text-center"><img src="{{ $garage->garage_image }}" style="width:50px; height: 50px"></td>
                                                                                 <td>
                                                                     <div class="td-actions text-center">
-                                                                                <a  rel="tooltip" class="btn btn-info btn-simple" href="{{ route('garage.show', $garage->garage_id) }}">
+                                                                                <a  rel="tooltip" class="btn btn-info btn-simple" href="{{ route('garage.show', $garage->id) }}">
                                                                                                     <i class="material-icons">visibility</i>
                                                                                 </a>
-                                                                                <a  rel="tooltip" class="btn btn-info btn-simple" href="{{ route('garage.edit', $garage->garage_id) }}" data-original-title="Edit">
+                                                                                <a  rel="tooltip" class="btn btn-info btn-simple" href="{{ route('garage.edit', $garage->id) }}" data-original-title="Edit">
                                                                                                     <i class="material-icons">edit</i>
                                                                                 </a>
                                                                                                 <!-- <button type="button" rel="tooltip" class="btn btn-danger btn-simple">

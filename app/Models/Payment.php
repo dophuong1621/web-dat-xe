@@ -12,5 +12,10 @@ class Payment extends Model
 
     public $timestamps = false;
 
-    public $primaryKey = "payment_id";
+    public $primaryKey = "id";
+
+    public function bookingPayment()
+    {
+        return $this->hasOne(Booking::class, 'id', 'booking_id');
+    }
 }

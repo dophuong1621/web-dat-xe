@@ -22,13 +22,14 @@ class UserController extends Controller
     {
         $searchUser = $request->get('search');
         // $indexUser = User::where('fullname_user', 'like', '%' . $searchUser . '%')->paginate(3);
-        $indexUser = User::select('*')
-            ->join('acount_category', 'user.acount_category', '=', 'acount_category.acount_category_id')
-            ->join('status_user', 'user.acount_status', '=', 'status_user.status_id')
+        $indexUser = User::select('user.fullname_user','user.id','user.email_user','user.dob_user','user.contact_user','acount_category.name_acount_category','status_user.name_status')
+            ->join('acount_category', 'user.acount_category', '=', 'acount_category.id')
+            ->join('status_user', 'user.acount_status', '=', 'status_user.id')
             ->where('fullname_user', 'like', '%' . $searchUser . '%')
+            ->orderBy('user.id', 'ASC')
             ->paginate(3);
 
-        $count_booking = Booking::select(DB::raw('count(booking_id) as tongDon'))
+        $count_booking = Booking::select(DB::raw('count(id) as tongDon'))
             ->where('booking.booking_status', '=', 1)
             ->get();
         $countTongDon = $count_booking[0]['tongDon'];
@@ -50,7 +51,7 @@ class UserController extends Controller
     {
         $acount_category = acount_category::all();
         $status_user = status_user::all();
-        $count_booking = Booking::select(DB::raw('count(booking_id) as tongDon'))
+        $count_booking = Booking::select(DB::raw('count(id) as tongDon'))
             ->where('booking.booking_status', '=', 1)
             ->get();
         $countTongDon = $count_booking[0]['tongDon'];
@@ -100,15 +101,15 @@ class UserController extends Controller
     public function edit($id)
     {
         // $user = User::find($id)
-        //     ->join('acount_category', 'user.user_id', '=', 'acount_category.acount_category_id')
+        //     ->join('acount_category', 'user.id', '=', 'acount_category.id')
         //     ->first();
         $acount_category = AcountCategory::all();
         $status_user = status_user::all();
-        $user =  User::join('acount_category', 'user.acount_category', '=', 'acount_category.acount_category_id')
-            ->join('status_user', 'user.acount_status', '=', 'status_user.status_id')
-            ->where('user.user_id', '=', $id)
+        $user =  User::join('acount_category', 'user.acount_category', '=', 'acount_category.id')
+            ->join('status_user', 'user.acount_status', '=', 'status_user.id')
+            ->where('user.id', '=', $id)
             ->first();
-        $count_booking = Booking::select(DB::raw('count(booking_id) as tongDon'))
+        $count_booking = Booking::select(DB::raw('count(id) as tongDon'))
             ->where('booking.booking_status', '=', 1)
             ->get();
         $countTongDon = $count_booking[0]['tongDon'];

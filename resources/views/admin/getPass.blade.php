@@ -65,7 +65,7 @@
                 <div class="row">
                     <div class="col-md-4 col-sm-6 col-md-offset-4 col-sm-offset-3">
                     </h4>
-                    <form method="POST" action="{{ route('postGetPass', $admin->admin_id) }}">
+                    <form method="POST" action="{{ route('postGetPass', $admin->id) }}">
                             @csrf
                             <div class="card card-login card-hidden">
                                 <div class="card-header text-center" data-background-color="rose">

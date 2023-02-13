@@ -11,7 +11,7 @@
                                         <h4 class="card-title">Edit Profile -
                                                             <small class="category">Complete your profile</small>
                                                         </h4>
-                                                        <form method="POST" action="{{ route('user.update', $user->user_id) }}">
+                                                        <form method="POST" action="{{ route('user.update', $user->id) }}">
                                                             @method("PUT")
                                                             @csrf
                                                             <div class="row">
@@ -54,9 +54,9 @@
                                                                                 <div class="form-group label-floating">
                                                                                         <label class="control-label">Account category</label>
                                                                                         <select class="form-control" name="acountCategory">
-                                                                                        <option value="{{ $user->acount_category_id}}" selected>{{ $user->name_acount_category}}</option>
+                                                                                        <option value="{{ $user->id}}" selected>{{ $user->name_acount_category}}</option>
                                                                                                 @foreach ($acount_category as $ac)
-                                                                                                    <option value="{{ $ac->acount_category_id }}"> {{ $ac->name_acount_category }} </option>
+                                                                                                    <option value="{{ $ac->id}}"> {{ $ac->name_acount_category }} </option>
                                                                                                         @endforeach    
                                                                                                     </select>
                                                                                                 </div>
@@ -65,9 +65,9 @@
                                                                                 <div class="form-group label-floating">
                                                                                                     <label class="control-label">Account Status</label>
                                                                                                     <select class="form-control" name="acountStatus">
-                                                                                                        <option value="{{ $user->status_id}}" selected>{{  $user->name_status}}</option>
+                                                                                                        <option value="{{ $user->id}}" selected>{{  $user->name_status}}</option>
                                                                                                         @foreach ($status_user as $at)
-                                                                                                        <option value="{{ $at->status_id }}"> {{ $at->name_status }} </option>
+                                                                                                        <option value="{{ $at->id }}"> {{ $at->name_status }} </option>
                                                                                                       @endforeach    
                                                                                                     </select>
                                                                                                 </div>

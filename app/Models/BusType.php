@@ -12,5 +12,5 @@ class BusType extends Model
 
     public $timestamps = false;
 
-    public $primaryKey = "bus_type_id";
+    public $primaryKey = "id";
 }

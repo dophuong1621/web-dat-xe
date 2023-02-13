@@ -12,5 +12,5 @@ class StatusDriver extends Model
 
     public $timestamps = false;
 
-    public $primaryKey = 'status_driver_id';
+    public $primaryKey = 'id';
 }

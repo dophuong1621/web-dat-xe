@@ -12,5 +12,15 @@ class TravelSchedule extends Model
 
     public $timestamps = false;
 
-    public $primaryKey = "schedule_id";
+    public $primaryKey = "id";
+
+    public function bus()
+    {
+        return $this->hasOne(Bus::class, 'id', 'bus_id');
+    }
+
+    public function driver()
+    {
+        return $this->hasOne(Driver::class,'id','driver_id');
+    }
 }

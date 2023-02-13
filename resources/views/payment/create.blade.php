@@ -23,7 +23,7 @@
                                                                     <select class="form-control" name="booking">
                                                                         <option>Select</option>
                                                                         @foreach ($booking as $b)
-                                                                          <option value="{{ $b->booking_id }}"> {{ $b->fullname_user. '(' .$b->starting_point. '-' . $b->destination .')'. '(' .$b->date_of_booking .')' }} </option>
+                                                                          <option value="{{ $b->id }}"> {{ $b->fullname_user. '(' .$b->starting_point. '-' . $b->destination .')'. '(' .$b->date_of_booking .')' }} </option>
                                                                         @endforeach    
                                                                     </select>
                                                                 </div>
@@ -46,7 +46,7 @@
                                                                 <select class="form-control" name="paymentStatus">
                                                                     <option>Select</option>
                                                                     @foreach ($statusPayment as $sp)
-                                                                    <option value="{{ $sp->payment_status_id }}"> {{ $sp->name_payment_status }} </option>
+                                                                    <option value="{{ $sp->id }}"> {{ $sp->name_payment_status }} </option>
                                                                   @endforeach    
                                                                 </select>
                                                             </div>

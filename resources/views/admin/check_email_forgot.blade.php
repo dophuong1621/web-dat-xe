@@ -5,7 +5,7 @@
             <p>Vui lòng click vào link dưới đây để đặt lại mật khẩu</p>
             <p> Chú ý: Mã xác nhận chỉ có hiệu lực trong 72 giờ </p>
             <p>
-                <a href="{{ route('getPass',['admin' => $admin->admin_id, 'token'=> $admin->token]) }}" style="display:inline-block; background: green; color: #fff; padding: 7px 25px; font-weight: bold"> Đặt lại mật khẩu</a>
+                <a href="{{ route('getPass',['admin' => $admin->id, 'token'=> $admin->token]) }}" style="display:inline-block; background: green; color: #fff; padding: 7px 25px; font-weight: bold"> Đặt lại mật khẩu</a>
             </p>
       </div>
 </div>

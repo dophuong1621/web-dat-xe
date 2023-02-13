@@ -12,13 +12,20 @@ class Driver extends Model
 
     public $timestamps = false;
 
-    public $primaryKey = "driver_id";
-    // public function getGenderAttribute()
-    // {
-    //     if ($this->gender_driver == 0) {
-    //         return "Nam";
-    //     } else {
-    //         return "Nữ";
-    //     }
-    // }
+    public $primaryKey = "id";
+
+    public function driverGarage()
+    {
+        return $this->hasMany(Garage::class, 'id', 'driver_garage');
+    }
+
+    public function driverStatus()
+    {
+        return $this->hasMany(StatusDriver::class, 'id', 'status_driver');
+    }
+
+    public function driverGender()
+    {
+        return $this->hasMany(Gender::class, 'id', 'gender_driver');
+    }
 }

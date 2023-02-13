@@ -15,6 +15,11 @@
                                                                                 {{session('error')}}
                                                             </div>
                                                     @endif
+                                                    @if(session('status'))
+                                                            <div class="alert alert-success" role="alert">
+                                                                                {{session('status')}}
+                                                            </div>
+                                                    @endif
                                                     <div class="form-group label-floating">
                                                         <label class="control-label" for="current_password">
                                                             Current 

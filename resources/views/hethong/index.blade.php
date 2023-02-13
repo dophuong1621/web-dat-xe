@@ -31,7 +31,7 @@
                                                             </thead>
                                                             <tbody>
                                                                 <tr @foreach ($indexUser as $user)>
-                                                                                <td class="text-center">{{ $user->user_id }}</td>
+                                                                                <td class="text-center">{{ $user->id }}</td>
                                                                                 <td class="text-center">{{ $user->fullname_user }}</td>
                                                                                 <td class="text-center">{{ $user->email_user }}</td>
                                                                                 <td class="text-center">*********</td>
@@ -41,14 +41,14 @@
                                                                                 <td class="text-center">{{ $user->name_status }}</td>
                                                                                 <td class="text-center">
                                                                                 <div class="td-actions text-center">
-                                                                                <a  rel="tooltip" class="btn btn-info btn-simple" href="{{ route('user.edit', $user->user_id) }}" data-original-title="Edit">
+                                                                                <a  rel="tooltip" class="btn btn-info btn-simple" href="{{ route('user.edit', $user->id) }}" data-original-title="Edit">
                                                                                                     <i class="material-icons">edit</i>
                                                                                 </a>
-                                                                                                {{-- <form action="{{ route('user.destroy', $user->user_id) }}" method="POST" class="btn btn-simple btn-danger btn-icon table-action delete">
+                                                                                                {{-- <form action="{{ route('user.destroy', $user->id) }}" method="POST" class="btn btn-simple btn-danger btn-icon table-action delete">
                                                                                                     @method('DELETE')
                                                                                                     @csrf
                                                                                                     
-                                                                                                        <a rel="tooltip" title="" class="btn btn-simple btn-danger btn-icon table-action delete" href="{{ route('user.destroy', $user->user_id) }}" data-original-title="Delete">
+                                                                                                        <a rel="tooltip" title="" class="btn btn-simple btn-danger btn-icon table-action delete" href="{{ route('user.destroy', $user->id) }}" data-original-title="Delete">
                                                                                                         <i class="material-icons">close</i></a>
                                                                                                     
                                                                                                 </form> --}}

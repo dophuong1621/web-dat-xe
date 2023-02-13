@@ -30,13 +30,13 @@
                                                             <select class="form-control" name="gender">
                                                                 <option>Select</option>
                                                                 @foreach ($gender as $gd)
-                                                                  <option value="{{ $gd->gender_id }}"> {{ $gd->gender_name }} </option>
-                                                                @endforeach    
-                                                            </select>  
+                                                                  <option value="{{ $gd->id }}"> {{ $gd->gender_name }} </option>
+                                                                @endforeach
+                                                            </select>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            
+
                                                 <div class="row">
                                                     <label class="col-sm-2 label-on-left">Ngày Sinh</label>
                                                     <div class="col-sm-7">
@@ -64,7 +64,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                               
+
                                                 <div class="row">
                                                     <label class="col-sm-2 label-on-left">Garage</label>
                                                     <div class="col-sm-7">
@@ -73,8 +73,8 @@
                                                             <select class="form-control" name="garage">
                                                                 <option>Select</option>
                                                                 @foreach ($garage as $g)
-                                                                  <option value="{{ $g->garage_id }}"> {{ $g->name_garage }} </option>
-                                                                @endforeach    
+                                                                  <option value="{{ $g->id }}"> {{ $g->name_garage }} </option>
+                                                                @endforeach
                                                             </select>
                                                         </div>
                                                     </div>
@@ -87,8 +87,8 @@
                                                             <select class="form-control" name="statusDriver">
                                                                 <option>Select</option>
                                                                 @foreach ($statusDriver as $sd)
-                                                                <option value="{{ $sd->status_driver_id }}"> {{ $sd->name_status_driver }} </option>
-                                                              @endforeach    
+                                                                <option value="{{ $sd->id }}"> {{ $sd->name_status_driver }} </option>
+                                                              @endforeach
                                                             </select>
                                                         </div>
                                                     </div>
@@ -121,9 +121,9 @@
                                         </form>
                                     </div>
                                 </div>
-                                                                   
+
                                                             </div>
                                                         </div>
-                
+
                                                         </div>
 @endsection

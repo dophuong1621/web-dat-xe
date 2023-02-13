@@ -58,7 +58,7 @@
                                                                     <select class="form-control" name="statusGarage">
                                                                         <option>Select</option>
                                                                         @foreach ($statusGarage as $st)
-                                                                          <option value="{{ $st->status_garage_id }}"> {{ $st->name_status_garage }} </option>
+                                                                          <option value="{{ $st->id }}"> {{ $st->name_status_garage }} </option>
                                                                         @endforeach    
                                                                     </select>
                                                                 </div>

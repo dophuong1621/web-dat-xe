@@ -16,14 +16,11 @@ class CancelBookingController extends Controller
     public function index(request $request)
     {
         $searchCancel = $request->get('search');
-        $indexCancel = Booking::select('*')
-            ->join('travel_schedule', 'travel_schedule.schedule_id', '=', 'booking.schedule_id')
-            ->join('user', 'user.user_id', '=', 'booking.user_id')
-            ->join('booking_status', 'booking.booking_status', '=', 'booking_status.booking_status_id')
-            ->where('fullname_user', 'like', "%$searchCancel%")
-            ->where('booking.booking_status', '=', 3)
+        $indexCancel = Booking::with('schedule','user')
+            // ->where('fullname_user', 'like', "%$searchCancel%")
+            ->where('booking_status', '=', 3)
             ->paginate(3);
-        $count_booking = Booking::select(DB::raw('count(booking_id) as tongDon'))
+        $count_booking = Booking::select(DB::raw('count(id) as tongDon'))
             ->where('booking.booking_status', '=', 1)
             ->get();
         $countTongDon = $count_booking[0]['tongDon'];

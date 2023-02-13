@@ -15,6 +15,7 @@
                                 <tr>
                                     <th class="text-center">ID</th>
                                     <th class="text-center">User</th>
+                                    <th class="text-center">Travel</th>
                                     <th class="text-center">Number of seats</th>
                                     <th class="text-center">Fare Amount</th>
                                     <th class="text-center">Total Amount</th>
@@ -25,8 +26,9 @@
                             </thead>
                             <tbody>
                                 <tr @foreach ($indexCancel as $cancel)>
-                                    <td class="text-center">{{ $cancel->booking_id}}</td>
-                                    <td class="text-center">{{ $cancel->fullname_user }}</td>
+                                    <td class="text-center">{{ $cancel->id}}</td>
+                                    <td class="text-center">{{ $cancel->user[0]->fullname_user }}</td>
+                                    <td class="text-center">{{ $cancel->schedule[0]->starting_point . '-'. $cancel->schedule[0]->destination }}</td>
                                     <td class="text-center">{{ $cancel->number_of_seats }}</td>
                                     <td class="text-center">{{ number_format($cancel->fare_amount,0,",",".") }}</td>
                                     <td class="text-center">{{ number_format($cancel->total_amount,0,",",".") }}</td>

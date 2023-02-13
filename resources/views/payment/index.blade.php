@@ -41,7 +41,7 @@
                             </thead>
                             <tbody>
                                 <tr @foreach ($indexPayment as $payment)>
-                                    <td class="text-center">{{ $payment->payment_id }}</td>
+                                    <td class="text-center">{{ $payment->id }}</td>
                                     <td class="text-center">{{ $payment->fullname_user }}</td>
                                     <td class="text-center">{{ $payment->starting_point . ' -> '. $payment->destination}}</td>
                                     {{-- <td class="text-center">{{ $payment->name_garage }}</td> --}}
@@ -53,10 +53,10 @@
                                     </td>
                                     <td>
                                         <div class="td-actions text-center">
-                                            <!-- <a  rel="tooltip" class="btn btn-info btn-simple" href="{{ route('payment.show', $payment->payment_id) }}">
+                                            <!-- <a  rel="tooltip" class="btn btn-info btn-simple" href="{{ route('payment.show', $payment->id) }}">
                                                                                                     <i class="material-icons">visibility</i>
                                                                                 </a>-->
-                                            <!-- <a rel="tooltip" class="btn btn-info btn-simple" href="{{ route('payment.edit', $payment->payment_id) }}" data-original-title="Edit">
+                                            <!-- <a rel="tooltip" class="btn btn-info btn-simple" href="{{ route('payment.edit', $payment->id) }}" data-original-title="Edit">
                                                 <i class="material-icons">edit</i>
                                             </a> -->
                                             <!--<button type="button" rel="tooltip" class="btn btn-danger btn-simple">

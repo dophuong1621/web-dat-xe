@@ -12,5 +12,5 @@ class acount_category extends Model
 
     public $timestamps = false;
 
-    public $primaryKey = 'acount_category_id';
+    public $primaryKey = 'id';
 }

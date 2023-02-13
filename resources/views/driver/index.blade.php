@@ -42,7 +42,7 @@
                                                             </thead>
                                                             <tbody>
                                                                 <tr @foreach ($indexDriver as $driver)>  
-                                                                                <td class="text-center">{{ $driver->driver_id }}</td>
+                                                                                <td class="text-center">{{ $driver->id }}</td>
                                                                                 <td class="text-center">{{ $driver->fullname_driver }}</td>
                                                                                 <td class="text-center">{{ $driver->gender_name }}</td>
                                                                                 <td class="text-center">{{ $driver->email_driver }}</td>
@@ -53,7 +53,7 @@
                                                                                 <td class="text-center"><img src="{{ $driver->driver_image }}" style="width:50px; height: 50px"></td>
                                                                                 <td>
                                                                     <div class="td-actions text-center">
-                                                                                <a  rel="tooltip" class="btn btn-info btn-simple" href="{{ route('driver.edit', $driver->driver_id) }}" data-original-title="Edit">
+                                                                                <a  rel="tooltip" class="btn btn-info btn-simple" href="{{ route('driver.edit', $driver->id) }}" data-original-title="Edit">
                                                                                                     <i class="material-icons">edit</i>
                                                                                 </a>
                                                                                                

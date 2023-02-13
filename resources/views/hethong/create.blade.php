@@ -68,7 +68,7 @@
                                                                 <select class="form-control" name="acountCategory">
                                                                     <option>Select</option>
                                                                     @foreach ($acount_category as $ac)
-                                                                      <option value="{{ $ac->acount_category_id }}"> {{ $ac->name_acount_category }} </option>
+                                                                      <option value="{{ $ac->id}}"> {{ $ac->name_acount_category }} </option>
                                                                     @endforeach    
                                                                 </select>
                                                             </div>
@@ -82,7 +82,7 @@
                                                                 <select class="form-control" name="acountStatus">
                                                                     <option>Select</option>
                                                                     @foreach ($status_user as $at)
-                                                                    <option value="{{ $at->status_id }}"> {{ $at->name_status }} </option>
+                                                                    <option value="{{ $at->id }}"> {{ $at->name_status }} </option>
                                                                   @endforeach    
                                                                 </select>
                                                             </div>

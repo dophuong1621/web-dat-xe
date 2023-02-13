@@ -11,7 +11,7 @@ class CountBooking extends Controller
     public function count()
     {
 
-        $count_booking = Booking::select(DB::raw('count(booking_id) as tongDon'))
+        $count_booking = Booking::select(DB::raw('count(id) as tongDon'))
             ->where('booking.booking_status', '=', 1)
             ->get();
         // dd($count_booking);

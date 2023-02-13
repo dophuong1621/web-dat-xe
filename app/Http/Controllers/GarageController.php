@@ -7,7 +7,7 @@ use App\Models\Booking;
 use App\Models\StatusGarage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Redirect;    
+use Illuminate\Support\Facades\Redirect;
 
 class GarageController extends Controller
 {
@@ -19,13 +19,13 @@ class GarageController extends Controller
     public function index(request $request)
     {
         $searchGarage = $request->get('search');
-        $indexGarage = Garage::join('status_garage', 'status_garage.status_garage_id', '=', 'garage.status_garage')
-            // ->join('driver', 'driver.driver_garage', '=', 'garage.garage_id')
-            // ->join('bus', 'bus.bus_garage', '=', 'garage.garage_id')
+        $indexGarage = Garage::join('status_garage', 'status_garage.id', '=', 'garage.status_garage')
+            // ->join('driver', 'driver.driver_garage', '=', 'garage.id')
+            // ->join('bus', 'bus.bus_garage', '=', 'garage.id')
             ->where('name_garage', 'like', '%' . $searchGarage . '%')
             ->paginate(3);
         // dd($indexGarage);
-        $count_booking = Booking::select(DB::raw('count(booking_id) as tongDon'))
+        $count_booking = Booking::select(DB::raw('count(id) as tongDon'))
             ->where('booking.booking_status', '=', 1)
             ->get();
         $countTongDon = $count_booking[0]['tongDon'];
@@ -44,7 +44,7 @@ class GarageController extends Controller
     public function create()
     {
         $statusGarage = StatusGarage::All();
-        $count_booking = Booking::select(DB::raw('count(booking_id) as tongDon'))
+        $count_booking = Booking::select(DB::raw('count(id) as tongDon'))
             ->where('booking.booking_status', '=', 1)
             ->get();
         $countTongDon = $count_booking[0]['tongDon'];
@@ -87,18 +87,18 @@ class GarageController extends Controller
     public function show($id)
     {
         $garage = Garage::select('*')
-            ->join('bus', 'bus.bus_garage', '=', 'garage.garage_id')
-            ->leftJoin('bus_type', 'bus_type.bus_type_id', '=', 'bus.bus_type')
-            ->leftJoin('bus_status', 'bus_status.bus_status_id', '=', 'bus.bus_status')
-            ->leftJoin('driver', 'garage.garage_id', '=', 'driver.driver_garage')
-            ->leftJoin('status_driver', 'driver.status_driver', '=', 'status_driver.status_driver_id')
-            ->leftJoin('status_garage', 'garage.status_garage', '=', 'status_garage.status_garage_id')
-            ->where('garage.garage_id',$id)
+            ->join('bus', 'bus.bus_garage', '=', 'garage.id')
+            ->leftJoin('bus_type', 'bus_type.id', '=', 'bus.bus_type')
+            ->leftJoin('bus_status', 'bus_status.id', '=', 'bus.bus_status')
+            ->leftJoin('driver', 'garage.id', '=', 'driver.driver_garage')
+            ->leftJoin('status_driver', 'driver.status_driver', '=', 'status_driver.id')
+            ->leftJoin('status_garage', 'garage.status_garage', '=', 'status_garage.id')
+            ->where('garage.id',$id)
             ->where('bus.bus_garage', $id)
             ->where('driver.driver_garage',$id)
             ->first();
         $garageStatus = StatusGarage::All();
-        $count_booking = Booking::select(DB::raw('count(booking_id) as tongDon'))
+        $count_booking = Booking::select(DB::raw('count(id) as tongDon'))
             ->where('booking.booking_status', '=', 1)
             ->get();
         $countTongDon = $count_booking[0]['tongDon'];
@@ -119,11 +119,11 @@ class GarageController extends Controller
     public function edit($id)
     {
         $garageStatus = StatusGarage::all();
-        $garage =  Garage::join('status_garage', 'garage.status_garage', '=', 'status_garage.status_garage_id')
-        ->where('garage.garage_id', '=', $id)
+        $garage =  Garage::with('garageStatus')
+        ->where('id', '=', $id)
         ->first();
     // dd($garage);
-    $count_booking = Booking::select(DB::raw('count(booking_id) as tongDon'))
+    $count_booking = Booking::select(DB::raw('count(id) as tongDon'))
         ->where('booking.booking_status', '=', 1)
         ->get();
     $countTongDon = $count_booking[0]['tongDon'];

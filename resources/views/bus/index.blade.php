@@ -17,7 +17,7 @@
                     <i class="fa fa-search"></i>
                 </button>
                                                                 </span>
-                                                            </div> 
+                                                            </div>
                                                         </form> --}}
                                                         <div class="text-right">
                                                             <a rel="tooltip" title="" class="btn btn-primary" href="{{ route('bus.create') }}" data-original-title="Create">
@@ -26,7 +26,7 @@
                                                         </div>
                                                     <div class="table-responsive">
                                                         <table class="table">
-                                                            <thead>                    
+                                                            <thead>
                                                                 <tr>
                                                                     <th class="text-center">ID</th>
                                                                     <th class="text-center">Garage</th>
@@ -39,17 +39,17 @@
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
-                                                                <tr @foreach ($indexBus as $bus)>    
-                                                                                <td class="text-center">{{ $bus->bus_id }}</td>
-                                                                                <td class="text-center">{{ $bus->name_garage }}</td>
+                                                                <tr @foreach ($indexBus as $bus)>
+                                                                                <td class="text-center">{{ $bus->id }}</td>
+                                                                                <td class="text-center">{{ $bus->busGarage[0]->name_garage }}</td>
                                                                                 <td class="text-center">{{ $bus->bus_plate_number }}</td>
-                                                                                <td class="text-center">{{ $bus->name_bus_type }}</td>
+                                                                                <td class="text-center">{{ $bus->busType[0]->name_bus_type }}</td>
                                                                                 <td class="text-center">{{ $bus->capacity }}</td>
-                                                                                <td class="text-center">{{ $bus->name_bus_status }}</td>
+                                                                                <td class="text-center">{{ $bus->busStatus[0]->name_bus_status }}</td>
                                                                                 <td class="text-center"><img src="{{ $bus->bus_image }}" style="width:50px; height: 50px"></td>
                                                                                 <td>
                                                                     <div class="td-actions text-center">
-                                                                                <a  rel="tooltip" class="btn btn-info btn-simple" href="{{ route('bus.edit', $bus->bus_id) }}">
+                                                                                <a  rel="tooltip" class="btn btn-info btn-simple" href="{{ route('bus.edit', $bus->id) }}">
                                                                                                     <i class="material-icons">edit</i>
                                                                                 </a>
                                                                                                 {{-- <button type="button" rel="tooltip" class="btn btn-success btn-simple">
@@ -66,12 +66,12 @@
                                                         <div class="text-center">
                                                             {{ $indexBus->appends([
                                                                 'indexBus' => $indexBus
-                                                            ])->links()}}   
+                                                            ])->links()}}
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
         </div>
     </div>
-</div>            
+</div>
 @endsection

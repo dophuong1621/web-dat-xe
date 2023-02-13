@@ -6,22 +6,22 @@
                             <div class="card">
                                 <div class="card-header card-header-icon" data-background-color="rose">
                                     <i class="material-icons">king_bed</i>
-                                </div>  
+                                </div>
                                 <div class="card-content">
                                         <h4 class="card-title">Bus Edit
                                                         </h4>
-                                                        <form method="POST" action="{{ route('bus.update', $bus->bus_id) }}">
+                                                        <form method="POST" action="{{ route('bus.update',$bus->id) }}">
                                                             @method("PUT")
                                                             @csrf
                                                             <div class="row">
-                                                            <div class="col-md-4">           
+                                                            <div class="col-md-4">
                                                                                 <div class="form-group label-floating">
                                                                                                     <label class="control-label">Garage</label>
                                                                                                     <select class="form-control" name="busGarage">
-                                                                                                            <option value="{{ $bus->garage_id}}" selected>{{ $bus->name_garage}}</option>
+                                                                                                            <option value="{{ $bus->busGarage[0]->id}}" selected>{{ $bus->busGarage[0]->name_garage}}</option>
                                                                                                                     @foreach ($bus_garage as $bg)
-                                                                                                                        <option value="{{ $bg->garage_id }}"> {{ $bg->name_garage }} </option>
-                                                                                                                            @endforeach    
+                                                                                                                        <option value="{{ $bg->id }}" > {{ $bg->name_garage }} </option>
+                                                                                                                            @endforeach
                                                                                                                         </select>
                                                                                                                     </div>
                                                                                                 </div>
@@ -39,43 +39,43 @@
                                                                             </div>
                                                             </div>
                                                             <div class="row">
-                                                                <div class="col-md-4">           
+                                                                <div class="col-md-4">
                                                                                 <div class="form-group label-floating">
                                                                                                     <label class="control-label">Type</label>
                                                                                                     <select class="form-control" name="busType">
-                                                                                                            <option value="{{ $bus->bus_type}}" selected>{{ $bus->name_bus_type}}</option>
+                                                                                                            <option value="{{ $bus->busType[0]->id}}" selected>{{ $bus->busType[0]->name_bus_type}}</option>
                                                                                                                     @foreach ($bus_type as $bt)
-                                                                                                                        <option value="{{ $bt->bus_type_id }}"> {{ $bt->name_bus_type }} </option>
-                                                                                                                            @endforeach    
+                                                                                                                        <option value="{{ $bt->id }}"> {{ $bt->name_bus_type }} </option>
+                                                                                                                            @endforeach
                                                                                                                         </select>
                                                                                                                     </div>
                                                                                                 </div>
-                                                            <div class="col-md-4">           
+                                                            <div class="col-md-4">
                                                                                 <div class="form-group label-floating">
                                                                                                     <label class="control-label">Status</label>
                                                                                                     <select class="form-control" name="busStatus">
-                                                                                                            <option value="{{ $bus->bus_status_id}}" selected>{{ $bus->name_bus_status}}</option>
+                                                                                                            <option value="{{ $bus->busStatus[0]->id}}" selected>{{ $bus->busStatus[0]->name_bus_status}}</option>
                                                                                                                     @foreach ($status_bus as $bs)
-                                                                                                                        <option value="{{ $bs->bus_status_id }}"> {{ $bs->name_bus_status }} </option>
-                                                                                                                            @endforeach    
+                                                                                                                        <option value="{{ $bs->id }}"> {{ $bs->name_bus_status }} </option>
+                                                                                                                            @endforeach
                                                                                                                         </select>
                                                                                                                     </div>
                                                                                                 </div>
                                                             {{-- <div class="col-md-4">
                                                                     <div class="form-group label-floating">
                                                                         <label class="control-label">Image</label>
-                                                                        
+
                                                                         <img src="{{ $bus->bus_image }}" width="5%">
                                                                     </div>
                                                                 </div> --}}
-                                                        
+
                                                             </div>
-                                        </div>
                                                             <div>
                                                             <button type="submit" class="btn btn-rose pull-right">Edit</button>
                                                             <div class="clearfix"></div>
+                                                            </div>
                                                         </form>
-                                </div>
+                            </div>
                             </div>
                         </div>
                     </div>

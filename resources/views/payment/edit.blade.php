@@ -9,7 +9,7 @@
                                 </div>  
                                 <div class="card-content">
                                         <h4 class="card-title">Edit Payment </h4>
-                                                        <form method="POST" action="{{ route('payment.update', $payment->payment_id) }}">
+                                                        <form method="POST" action="{{ route('payment.update', $payment->id) }}">
                                                             @method("PUT")
                                                             @csrf
                                                             <div class="row">
@@ -17,9 +17,9 @@
                                                                     <div class="form-group label-floating">
                                                                                         <label class="control-label">Booking</label>
                                                                                         <select class="form-control" name="booking">
-                                                                                            <option value="{{ $payment->status_garage_id}}" selected>{{  $payment->name_status_garage}}</option>
+                                                                                            <option value="{{ $payment->id}}" selected>{{  $payment->name_status_garage}}</option>
                                                                                             @foreach ($garageStatus as $ds)
-                                                                                            <option value="{{ $ds->status_garage_id }}"> {{ $ds->name_status_garage }} </option>
+                                                                                            <option value="{{ $ds->id }}"> {{ $ds->name_status_garage }} </option>
                                                                                           @endforeach    
                                                                                         </select>
                                                                                     </div>
@@ -47,9 +47,9 @@
                                                                     <div class="form-group label-floating">
                                                                                         <label class="control-label">Garage Status</label>
                                                                                         <select class="form-control" name="garageStatus">
-                                                                                            <option value="{{ $garage->status_garage_id}}" selected>{{  $garage->name_status_garage}}</option>
+                                                                                            <option value="{{ $garage->id}}" selected>{{  $garage->name_status_garage}}</option>
                                                                                             @foreach ($garageStatus as $ds)
-                                                                                            <option value="{{ $ds->status_garage_id }}"> {{ $ds->name_status_garage }} </option>
+                                                                                            <option value="{{ $ds->id }}"> {{ $ds->name_status_garage }} </option>
                                                                                           @endforeach    
                                                                                         </select>
                                                                                     </div>

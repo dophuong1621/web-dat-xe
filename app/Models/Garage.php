@@ -12,5 +12,10 @@ class Garage extends Model
 
     public $timestamps = false;
 
-    public $primaryKey = "garage_id";
+    public $primaryKey = "id";
+
+    public function garageStatus()
+    {
+        return $this->hasMany(StatusGarage::class,'id','status_garage');
+    }
 }

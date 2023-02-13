@@ -9,7 +9,7 @@
                 </div>
                 <div class="card-content">
                     <h4 class="card-title">Edit Travel Schedule </h4>
-                    <form method="POST" action="{{ route('travel-schedule.update', $schedule->schedule_id) }}">
+                    <form method="POST" action="{{ route('travel-schedule.update', $schedule->id) }}">
                         @method("PUT")
                         @csrf
                         <div class="row">
@@ -17,9 +17,9 @@
                                 <div class="form-group label-floating">
                                     <label class="control-label">Bus</label>
                                     <select class="form-control" name="bus">
-                                        <option value="{{ $schedule->bus_id}}" selected>{{ $schedule->bus_plate_number}}</option>
+                                        <option value="{{ $schedule->id}}" selected>{{ $schedule->bus_plate_number}}</option>
                                         @foreach ($bus as $b)
-                                        <option value="{{ $b->bus_id }}"> {{ $b->bus_plate_number }} </option>
+                                        <option value="{{ $b->id }}"> {{ $b->bus_plate_number }} </option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -28,9 +28,9 @@
                                 <div class="form-group label-floating">
                                     <label class="control-label">Driver</label>
                                     <select class="form-control" name="driver">
-                                        <option value="{{ $schedule->driver_id}}" selected>{{ $schedule->fullname_driver}}({{ $schedule->name_garage}})</option>
+                                        <option value="{{ $schedule->id}}" selected>{{ $schedule->fullname_driver}}({{ $schedule->name_garage}})</option>
                                         @foreach ($driver as $d)
-                                        <option value="{{ $d->driver_id }}">{{ $d->fullname_driver}}({{ $d->name_garage}}) </option>
+                                        <option value="{{ $d->id }}">{{ $d->fullname_driver}}({{ $d->name_garage}}) </option>
                                         @endforeach
                                     </select>
                                 </div>

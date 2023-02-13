@@ -12,5 +12,5 @@ class Gender extends Model
 
     public $timestamps = false;
 
-    public $primaryKey = "gender_id";
+    public $primaryKey = 'id';
 }

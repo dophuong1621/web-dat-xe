@@ -12,5 +12,5 @@ class StatusPayment extends Model
 
     public $timestamps = false;
 
-    public $primaryKey = 'payment_status_id';
+    public $primaryKey = 'id';
 }

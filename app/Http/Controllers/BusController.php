@@ -21,13 +21,11 @@ class BusController extends Controller
     public function index(request $request)
     {
         $searchBus = $request->get('search');
-        $indexBus = Bus::join('garage', 'garage.garage_id', '=', 'bus.bus_garage')
+        $indexBus = Bus::with('busType','busGarage','busStatus')
             ->where('bus_plate_number', 'like', '%' . $searchBus . '%')
-            ->join('bus_type', 'bus_type.bus_type_id', '=', 'bus.bus_type')
-            ->join('bus_status', 'bus_status.bus_status_id', '=', 'bus.bus_status')
             ->paginate(3);
         // dd($indexBus);
-        $count_booking = Booking::select(DB::raw('count(booking_id) as tongDon'))
+        $count_booking = Booking::select(DB::raw('count(id) as tongDon'))
             ->where('booking.booking_status', '=', 1)
             ->get();
         $countTongDon = $count_booking[0]['tongDon'];
@@ -48,7 +46,7 @@ class BusController extends Controller
         $busType = BusType::All();
         $busGarage = Garage::All();
         $busStatus = StatusBus::All();
-        $count_booking = Booking::select(DB::raw('count(booking_id) as tongDon'))
+        $count_booking = Booking::select(DB::raw('count(id) as tongDon'))
             ->where('booking.booking_status', '=', 1)
             ->get();
         $countTongDon = $count_booking[0]['tongDon'];
@@ -103,13 +101,11 @@ class BusController extends Controller
         $bus_type = BusType::all();
         $status_bus = StatusBus::all();
         $bus_garage = Garage::all();
-        $bus =  Bus::join('bus_type', 'bus_type.bus_type_id', '=', 'bus.bus_type')
-            ->join('bus_status', 'bus.bus_status', '=', 'bus_status.bus_status_id')
-            ->join('garage', 'garage.garage_id', '=', 'bus.bus_garage')
-            ->where('bus.bus_id', '=', $id)
+        $bus =  Bus::with('busType','busGarage','busStatus')
+            ->where('bus.id', '=', $id)
             ->first();
-        // dd($bus);
-        $count_booking = Booking::select(DB::raw('count(booking_id) as tongDon'))
+//         dd($bus);
+        $count_booking = Booking::select(DB::raw('count(id) as tongDon'))
             ->where('booking.booking_status', '=', 1)
             ->get();
         $countTongDon = $count_booking[0]['tongDon'];

@@ -6,10 +6,10 @@
                             <div class="card">
                                 <div class="card-header card-header-icon" data-background-color="rose">
                                     <i class="material-icons">commute</i>
-                                </div>  
+                                </div>
                                 <div class="card-content">
                                         <h4 class="card-title">Edit Garage </h4>
-                                                        <form method="POST" action="{{ route('garage.update', $garage->garage_id) }}">
+                                                        <form method="POST" action="{{ route('garage.update', $garage->id) }}">
                                                             @method("PUT")
                                                             @csrf
                                                             <div class="row">
@@ -37,20 +37,20 @@
                                                                         <input type="text" class="form-control" name="addressGarage" value="{{ $garage->address_garage}}" >
                                                                     <span class="material-input"></span></div>
                                                                 </div>
-                                                                <div class="col-md-4">           
+                                                                <div class="col-md-4">
                                                                     <div class="form-group label-floating">
                                                                                         <label class="control-label">Garage Status</label>
                                                                                         <select class="form-control" name="garageStatus">
-                                                                                            <option value="{{ $garage->status_garage_id}}" selected>{{  $garage->name_status_garage}}</option>
+                                                                                            <option value="{{ $garage->garageStatus[0]->id}}" selected>{{  $garage->garageStatus[0]->name_status_garage}}</option>
                                                                                             @foreach ($garageStatus as $ds)
-                                                                                            <option value="{{ $ds->status_garage_id }}"> {{ $ds->name_status_garage }} </option>
-                                                                                          @endforeach    
+                                                                                            <option value="{{ $ds->id }}"> {{ $ds->name_status_garage }} </option>
+                                                                                          @endforeach
                                                                                         </select>
                                                                                     </div>
                                                                 </div>
                                                             </div>
                                                             <button type="submit" class="btn btn-rose pull-right">Edit</button>
-                                                            <div class="clearfix"></div>    
+                                                            <div class="clearfix"></div>
                                         </div>
                                                         </form>
                                 </div>
